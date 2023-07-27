@@ -16,7 +16,7 @@ class AppState : public QObject
     Q_PROPERTY(Song    currentSong      READ currentSong                                NOTIFY currentSongChanged)
     Q_PROPERTY(bool    empty            READ empty                                      NOTIFY emptyChanged)
     Q_PROPERTY(qint64  duration         READ duration                                   NOTIFY durationChanged)
-    Q_PROPERTY(qint64  position         READ position                                   NOTIFY positionChanged)
+    Q_PROPERTY(qint64  position         READ position         WRITE setPosition         NOTIFY positionChanged)
     Q_PROPERTY(QString playbackState    READ playbackState                              NOTIFY playbackStateChanged)
     Q_PROPERTY(int     volume           READ volume           WRITE setVolume           NOTIFY volumeChanged)
     Q_PROPERTY(bool    sidebarVisible   READ sidebarVisible   WRITE setSidebarVisible   NOTIFY sidebarVisibleChanged)
@@ -33,10 +33,12 @@ public:
     bool sidebarVisible() const;
     void setSidebarVisible(bool visible);
 
+    qint64 position() const;
+    void setPosition(qint64 position);
+
     Song currentSong() const;
     bool empty() const;
     qint64 duration() const;
-    qint64 position() const;
     QString playbackState() const;
 
     Q_INVOKABLE void togglePlayback();

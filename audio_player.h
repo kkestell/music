@@ -7,9 +7,9 @@
 class AudioPlayer : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(qint64              position READ position                 NOTIFY positionChanged)
-    Q_PROPERTY(qint64              duration READ duration                 NOTIFY durationChanged)
-    Q_PROPERTY(QMediaPlayer::State state    READ state                    NOTIFY stateChanged)
+    Q_PROPERTY(qint64              position READ position                      NOTIFY positionChanged)
+    Q_PROPERTY(qint64              duration READ duration   WRITE setPosition  NOTIFY durationChanged)
+    Q_PROPERTY(QMediaPlayer::State state    READ state                         NOTIFY stateChanged)
 
 public:
     explicit AudioPlayer(QObject *parent = nullptr);
@@ -18,6 +18,8 @@ public:
     Q_INVOKABLE void setVolume(int volume);
 
     qint64 position() const;
+    void setPosition(qint64 position);
+
     qint64 duration() const;
     QMediaPlayer::State state() const;
 

@@ -18,9 +18,9 @@ find_package(Qt5 COMPONENTS
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(TAGLIB REQUIRED IMPORTED_TARGET taglib)
 
-add_executable(ear main.cpp resources.qrc audio_player.cpp audio_player.h song.h playlist_model.cpp playlist_model.h app_state.cpp app_state.h metadata_loader.cpp metadata_loader.h cover_image_provider.cpp cover_image_provider.h)
+add_executable(music main.cpp resources.qrc audio_player.cpp audio_player.h song.h playlist_model.cpp playlist_model.h app_state.cpp app_state.h metadata_loader.cpp metadata_loader.h cover_image_provider.cpp cover_image_provider.h)
 
-target_link_libraries(ear
+target_link_libraries(music
         Qt5::Core
         Qt5::Gui
         Qt5::Qml
