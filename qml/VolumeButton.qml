@@ -9,9 +9,9 @@ ControlButton {
     onVolumeChanged: {
         if (!handle.dragging)
             handle.y = (1 - volume / slider.maximumValue) * (groove.height - handle.height);
-
     }
-    icon: volume < 25 ? 'qrc:/icons/volume0.svg' : volume < 50 ? 'qrc:/icons/volume1.svg' : volume < 75 ? 'qrc:/icons/volume2.svg' : 'qrc:/icons/volume3.svg'
+
+    icon: volume === 0 ? 'qrc:/icons/volume0.svg' : volume < 30 ? 'qrc:/icons/volume1.svg' : volume < 60 ? 'qrc:/icons/volume2.svg' : 'qrc:/icons/volume3.svg'
     buttonSize: 40
     buttonColor: themeManager.currentTheme.buttonColor
     iconSize: 20

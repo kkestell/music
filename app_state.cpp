@@ -179,6 +179,15 @@ qint64 AppState::position() const
     return m_audioPlayer->position();
 }
 
+void AppState::setPosition(qint64 position)
+{
+    if (m_audioPlayer->position() != position)
+    {
+        m_audioPlayer->setPosition(position);
+        emit positionChanged(position);
+    }
+}
+
 QString AppState::playbackState() const
 {
     switch(m_audioPlayer->state()) {

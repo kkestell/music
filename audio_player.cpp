@@ -1,13 +1,19 @@
 #include "audio_player.h"
+#include <QTimer>
 
-AudioPlayer::AudioPlayer(QObject *parent) : QObject(parent)
+AudioPlayer::AudioPlayer(QObject* parent) : QObject(parent)
 {
     m_player = new QMediaPlayer(this);
 
-    connect(m_player, &QMediaPlayer::stateChanged,       this, &AudioPlayer::onStateChanged);
+    connect(m_player, &QMediaPlayer::stateChanged, this, &AudioPlayer::onStateChanged);
     connect(m_player, &QMediaPlayer::mediaStatusChanged, this, &AudioPlayer::onMediaStatusChanged);
-    connect(m_player, &QMediaPlayer::positionChanged,    this, &AudioPlayer::onPositionChanged);
-    connect(m_player, &QMediaPlayer::durationChanged,    this, &AudioPlayer::onDurationChanged);
+    connect(m_player, &QMediaPlayer::positionChanged, this, &AudioPlayer::onPositionChanged);
+    connect(m_player, &QMediaPlayer::durationChanged, this, &AudioPlayer::onDurationChanged);
+}
+
+void AudioPlayer::setPosition(qint64 position)
+{
+    m_player->setPosition(position);
 }
 
 qint64 AudioPlayer::position() const

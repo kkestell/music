@@ -24,7 +24,7 @@ Window {
 
         Image {
             id: background
-
+            opacity: 0.5
             source: "image://cover/" + appState.currentSong.path
             sourceSize: Qt.size(parent.width, parent.height)
             anchors.fill: parent
@@ -38,7 +38,7 @@ Window {
             anchors.fill: background
             source: background
             radius: 100
-            samples: 64
+            samples: 128
         }
 
     }
@@ -270,10 +270,10 @@ Window {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.topMargin: 40
-                Layout.leftMargin: 50
-                Layout.rightMargin: 50
-                Layout.maximumWidth: 512
-                Layout.maximumHeight: 512
+                Layout.leftMargin: 40
+                Layout.rightMargin: 40
+                Layout.maximumWidth: 350
+                Layout.maximumHeight: 350
             }
 
             ColumnLayout {
@@ -283,6 +283,7 @@ Window {
                     Layout.alignment: Qt.AlignCenter
                     Layout.maximumWidth: 350
                     Layout.preferredWidth: 350
+                    Layout.bottomMargin: 10
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignHCenter
                     text: appState.currentSong.title
@@ -312,6 +313,8 @@ Window {
             }
 
             Rectangle {
+                id: progressBar
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: 350
                 height: 3
@@ -323,7 +326,57 @@ Window {
                     width: Math.max(0, Math.min(parent.width, (parent.width * (appState.position / appState.duration))))
                 }
 
+                MouseArea {
+                    id: mouseArea
+
+                    anchors.fill: parent
+                    onClicked: {
+                        var clickPosition = mouse.x;
+                        var progressBarWidth = progressBar.width;
+                        var newProgress = (clickPosition / progressBarWidth) * appState.duration;
+                        appState.position = newProgress;
+                    }
+                }
             }
+
+            // Slider {
+            //     id: positionSlider
+            //     Layout.alignment: Qt.AlignCenter
+            //     Layout.preferredWidth: 350
+            //     Layout.fillWidth: true
+            //     Layout.fillHeight: false
+            //     Layout.leftMargin: 40
+            //     Layout.rightMargin: 40
+            //     Layout.maximumWidth: 350
+            //     Layout.maximumHeight: 350
+            //     to: appState.duration
+            //     value: appState.position
+            //     stepSize: 1
+            //     live: false
+            //     onMoved: appState.position = value
+            //
+            //     background: Rectangle {
+            //         x: positionSlider.leftPadding
+            //         y: positionSlider.topPadding + positionSlider.availableHeight / 2 - height / 2
+            //         implicitWidth: 350
+            //         implicitHeight: 5
+            //         width: positionSlider.availableWidth
+            //         height: implicitHeight
+            //         radius: 2
+            //         color: themeManager.currentTheme.buttonColor
+            //
+            //         Rectangle {
+            //             width: positionSlider.visualPosition * parent.width
+            //             height: 5
+            //             color: themeManager.currentTheme.textColor
+            //             radius: 2
+            //         }
+            //
+            //     }
+            //
+            //     handle: Rectangle {
+            //     }
+            // }
 
             RowLayout {
                 spacing: 15
