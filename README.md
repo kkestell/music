@@ -7,6 +7,14 @@
 ### Arch
 
 ```console
-sudo pacman -Sy gcc cmake qt5
+sudo pacman -Sy gcc cmake qt5 gst-plugins-good
 ```
 
+## Building
+
+```
+mkdir build
+cd build
+cmake ..
+make
+```
