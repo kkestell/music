@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/AppWindow.qml</file>
+        <file>qml/ThemeManager.qml</file>
+        <file>qml/ControlButton.qml</file>
+        <file>qml/Song.qml</file>
+        <file>qml/CoverImage.qml</file>
+        <file>qml/VolumeButton.qml</file>
+        <file>icons/app_light.svg</file>
+        <file>icons/app_dark.svg</file>
+        <file>icons/next.svg</file>
+        <file>icons/play.svg</file>
+        <file>icons/pause.svg</file>
+        <file>icons/previous.svg</file>
+        <file>icons/volume.svg</file>
+        <file>icons/volume0.svg</file>
+        <file>icons/volume1.svg</file>
+        <file>icons/volume2.svg</file>
+        <file>icons/volume3.svg</file>
+        <file>icons/menu.svg</file>
+    </qresource>
+</RCC>
